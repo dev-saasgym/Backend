@@ -5,11 +5,6 @@ import alunosRoutes from './routes/alunos.routes.js';
 const app = express();
 
 app.use(express.json());
-import pool from './config/db.js';
-
-pool.query('SELECT NOW()')
-  .then(res => console.log('Banco conectado:', res.rows[0]))
-  .catch(err => console.error('Erro banco:', err));
 
 app.use('/auth', authRoutes);
 app.use('/alunos', alunosRoutes);
