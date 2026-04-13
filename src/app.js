@@ -5,6 +5,9 @@ import alunosRoutes from './routes/alunos.routes.js';
 const app = express();
 
 app.use(express.json());
+app.get('/', (req, res) => {
+  res.send('API funcionando 🚀');
+});
 
 app.use('/auth', authRoutes);
 app.use('/alunos', alunosRoutes);
