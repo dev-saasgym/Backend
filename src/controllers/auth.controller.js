@@ -32,7 +32,7 @@ export async function registrar(req, res) {
 
 export async function login(req, res) {
   const { email, senha } = req.body;
-
+console.log('EMAIL RECEBIDO:', email);
   try {
     const user = await pool.query(
       'SELECT * FROM usuarios WHERE email = $1',
