@@ -2,14 +2,17 @@ import pool from '../config/db.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-export async function registrar(req, res) {
+// ✅ FUNÇÃO HASH (SEPARADA)
 export async function hash(req, res) {
-const { senha } = req.body;
+  const { senha } = req.body;
 
   const senhaHash = await bcrypt.hash(senha, 10);
 
   res.json({ hash: senhaHash });
 }
+
+// ✅ REGISTRAR
+export async function registrar(req, res) {
   const { nome, email, senha, academia_nome } = req.body;
 
   try {
@@ -37,9 +40,12 @@ const { senha } = req.body;
   }
 }
 
+// ✅ LOGIN
 export async function login(req, res) {
   const { email, senha } = req.body;
-console.log('EMAIL RECEBIDO:', email);
+
+  console.log('EMAIL RECEBIDO:', email);
+
   try {
     const user = await pool.query(
       'SELECT * FROM usuarios WHERE email = $1',
