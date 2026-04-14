@@ -3,6 +3,13 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
 export async function registrar(req, res) {
+export async function hash(req, res) {
+const { senha } = req.body;
+
+  const senhaHash = await bcrypt.hash(senha, 10);
+
+  res.json({ hash: senhaHash });
+}
   const { nome, email, senha, academia_nome } = req.body;
 
   try {
