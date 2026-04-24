@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import authRoutes from './routes/auth.routes.js';
 import alunosRoutes from './routes/alunos.routes.js';
+import dashboardRoutes from "./routes/dashboard.routes.js"
 
 const app = express();
 
