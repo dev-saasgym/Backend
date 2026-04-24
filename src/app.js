@@ -14,6 +14,7 @@ app.get('/', (req, res) => {
 
 app.use('/auth', authRoutes);
 app.use('/alunos', alunosRoutes);
+app.use(dashboardRoutes)
 
 app.listen(3000, () => {
   console.log('Servidor rodando na porta 3000');
