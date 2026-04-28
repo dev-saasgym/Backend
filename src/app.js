@@ -7,28 +7,18 @@ import dashboardRoutes from './routes/dashboard.routes.js'
 
 const app = express()
 
-// 🔥 CORS COMPLETO (resolve de vez)
-app.use(cors({
-  origin: '*',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}))
-
-// 🔥 responde preflight
-app.options('*', cors())
-
+app.use(cors())
 app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('API funcionando 🚀')
 })
 
-// ROTAS
 app.use('/auth', authRoutes)
 app.use('/alunos', alunosRoutes)
 app.use('/dashboard', dashboardRoutes)
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT
 
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`)
