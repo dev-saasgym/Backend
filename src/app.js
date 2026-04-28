@@ -7,14 +7,15 @@ import dashboardRoutes from './routes/dashboard.routes.js'
 
 const app = express()
 
-// ✅ CORS CORRIGIDO
+// 🔥 CORS COMPLETO (resolve de vez)
 app.use(cors({
-  origin: [
-    'http://localhost:5173'
-  ],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  credentials: true
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }))
+
+// 🔥 responde preflight
+app.options('*', cors())
 
 app.use(express.json())
 
@@ -27,7 +28,6 @@ app.use('/auth', authRoutes)
 app.use('/alunos', alunosRoutes)
 app.use('/dashboard', dashboardRoutes)
 
-// START
 app.listen(3000, () => {
   console.log('Servidor rodando na porta 3000')
 })
