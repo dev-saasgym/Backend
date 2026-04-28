@@ -7,7 +7,14 @@ import dashboardRoutes from './routes/dashboard.routes.js'
 
 const app = express()
 
-app.use(cors())
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
+
+app.options('*', cors()) // 🔥 ESSENCIAL
+
 app.use(express.json())
 
 app.get('/', (req, res) => {
@@ -18,8 +25,8 @@ app.use('/auth', authRoutes)
 app.use('/alunos', alunosRoutes)
 app.use('/dashboard', dashboardRoutes)
 
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`Servidor rodando na porta ${PORT}`)
 })
