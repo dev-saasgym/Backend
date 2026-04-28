@@ -29,7 +29,7 @@ app.use((req, res, next) => {
 app.use(express.json())
 
 app.get('/', (req, res) => {
-  res.json({ status: 'ok' })
+  res.send('API funcionando 🚀')
 })
 
 app.use('/auth', authRoutes)
