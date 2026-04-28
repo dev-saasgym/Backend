@@ -28,8 +28,6 @@ app.use('/auth', authRoutes)
 app.use('/alunos', alunosRoutes)
 app.use('/dashboard', dashboardRoutes)
 
-const PORT = process.env.PORT || 3000
-
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`)
 })
